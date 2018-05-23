@@ -89,5 +89,6 @@ for i in range(1,10):
         list1.pop()
         count-=1
         list1.display(count)
+        #stop
             
         
