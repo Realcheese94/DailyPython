@@ -22,38 +22,52 @@ class BaseList:
 ##############################################
 
 class MyList(BaseList):
+    count = 0
     def __init__(self):
         self.list = []
         self.count = -1
         print("리스트 생성 완료 !")
 
     #추가
-    def append(self,data):
-        self.list.append(data)
+    def append(self):
+        ap = input("추가할 요소를 입력해주세요")
+        self.list.append(ap)
         self.count += 1
+        print(self.list)
+        
+        
 
 
     #전체 출력
-    def display(self,count):
-        print(self.list[0:count+1])
+    def display(self):
+        print(self.list)
+        
 
     #삭제
-    def remove(self,index,list,count):
-        for i in range(index,count,1):
-            self.list[i]=self.list[i+1]
-            
-        self.list[-1]=""
+    def remove(self):
+        index = int(input("제거할 인덱스를 입력해주세요"))
+        if index > self.count or index <0:
+            print("인덱스 에러입니다. 올바른 인덱스 값을 입력해주세요")
+        else:
+            self.list.pop(index)
+            print("제거를 성공했습니다. 현재 리스트 ",self.list)
+        
         
     #검색
-    def search(self,index):
-        try:
-            print(index ,"번째 요소는", self.list[index])
-        except IndexError:
-            print("Index 가 올바르지 않습니다. 0~ ",self.count,"까지의 수를 입력하세요")
+    def search(self):
+        sn = input("찾고자 하는 값을 입력해주세요")
+        if sn in self.list:
+                 
+                 print(sn,"이 리스트에 존재합니다. ",sn,"의 인덱스 값은 ",self.list.index(sn),"입니다")
+        else:
+                 print("검색 결과 없습니다.")
+        
 
     #마지막 원소 삭제
     def pop(self):
-        self.list[-1]=[]
+        self.list.pop()
+        print("마지막 원소 삭제를 성공했습니다. 현재 리스트는 ",self.list)
+        
         
     
     def listclear(self):
@@ -62,33 +76,26 @@ class MyList(BaseList):
     
 list1 = MyList()
 count = -1
-for i in range(1,10):
+while True:
     print('\n\n------------할 작업을 선택하세요-----------\n')
-    print('1. append / 2. remove / 3. POP / 4. display / 5. search')
+    print('1. append / 2. remove / 3. POP / 4. search / 5. display / 6.exit')
     num = int(input(">>>>"))
     
     if num ==1:
-        ap = input("append 할 요소를 입력해주세요")
-        list1.append(ap)
-        count += 1
-        list1.display(count)
-        print("현재 리스트의 최고인덱스 수는 ",count,"입니다")
+        list1.append()
         
     elif num ==2:
-        rm = int(input("삭제할 인덱스를 입력해주세요"))
-        #인덱스가 올바르게 입력되지 않은 경우.
-        if rm < 0 or rm>count:
-            print("인덱스 에러 다시 입력해주세요")
-            
-        else:
-            list1.remove(rm,list1,count)
-            count -= 1
-            list1.display(count)
+        list1.remove()            
 
     elif num ==3:
         list1.pop()
-        count-=1
-        list1.display(count)
-        #stop
+
+    elif num ==4:
+        list1.search()
+    elif num ==5:
+        list1.display()
+    else:
+        print("프로그램을 종료합니다")
+        break
             
         
