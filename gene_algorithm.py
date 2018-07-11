@@ -1,5 +1,5 @@
 
-
+import os
 import random
 from operator import eq
 #벽돌을 B 시멘트를 C로 한 target 유전자 리스트 생성
